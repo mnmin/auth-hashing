@@ -29,6 +29,7 @@ router.post('/', async (req, res) => {
     const token = jwt.sign({username}, secretKey)
 
     res.status(200).json({token})
+
     // Check that a user with that username exists in the database
     // Use bcrypt to check that the provided password matches the hashed password on the user
     // If either of these checks fail, respond with a 401 "Invalid username or password" error
