@@ -17,13 +17,13 @@ router.post('/', async (req, res) => {
     })
 
     if(!userExists) {
-        res.status(401).json({error: "error user does not exist"})
+        res.status(401).json({error: "error invalid input"})
     }
 
     const hashValidId = await bcrypt.compare(password, userExists.password)
 
     if(!hashValidId) {
-        res.status(401).json({error: "error invalid password"})
+        res.status(401).json({error: "error invalid input"})
     }
 
     const token = jwt.sign({username}, secretKey)

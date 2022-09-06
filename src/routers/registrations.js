@@ -10,7 +10,10 @@ router.post('/', async (req, res) => {
     // Get the username and password from request body
     const { username, password } = req.body
 
+    
     const encryptedPw = await bcrypt.hash(password, saltRounds)
+
+    // add try catch + add error message 400 / 409 conflict?
 
     const newUser = await prisma.user.create({
         data: {
@@ -18,6 +21,7 @@ router.post('/', async (req, res) => {
             password: encryptedPw
         }
     })
+    
     
     // Hash the password: https://github.com/kelektiv/node.bcrypt.js#with-promises
     
